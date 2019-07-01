@@ -1,0 +1,56 @@
+openapi: 3.0.2
+
+info:
+  title: Boilerplate for Flask REST API
+  version: 1.0.0
+  description: Boilerplate for Flask REST APIs
+  contact:
+      name: Team Guardians
+      email: team-guardians@antetechnologies.com
+
+servers:
+  - url: https://staging.finmarket.az/api
+    description: Staging server
+  - url: https://api.finmarket.az/api
+    description: Production server
+  - url: http://127.0.0.1:5000/api
+    description: Development server
+
+
+paths:
+  /hello:
+    get:
+      tags:
+        - hello
+      summary: Returns Hello world
+      description: Sample enpoint that returns Hello World message
+      parameters:
+        - $ref: '#/components/parameters/nameParam'
+      responses:
+        200:
+         description: OK
+         content:
+           application/json:
+             schema:
+              type: array
+              items:
+                $ref: '#/components/schemas/HelloWorldMessage'
+components:
+  parameters:
+    nameParam:
+      name: name
+      in: query
+      required: false
+      description: Optional parameter to make enpoint to say your name
+      schema:
+        type: string
+  schemas:
+    HelloWorldMessage:
+      type: object
+      required:
+        - message
+      properties:
+        message:
+          type: string
+          example: "James Bond"
+

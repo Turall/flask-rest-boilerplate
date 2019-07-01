@@ -1,0 +1,26 @@
+version: '2'
+
+volumes:
+  postgres_data:
+    external: true
+
+services:
+  postgres:
+    image: postgres:9.6
+    ports:
+      - 5436:5432
+    volumes:
+      - postgres_data:/var/lib/postgresql/gotham/data
+    environment:
+      - POSTGRES_USER=gotham
+      - POSTGRES_PASSWORD=changeme
+      - POSTGRES_DB=gotham
+  gotham:
+    build: .
+    ports:
+      - 8090:80
+    links:
+      - postgres
+    environment:
+      APP_SETTINGS: production
+      SQLALCHEMY_DATABASE_URI: 'postgres://gotham:changeme@localhost:5436/gotham'

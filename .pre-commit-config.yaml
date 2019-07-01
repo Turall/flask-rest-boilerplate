@@ -1,0 +1,32 @@
+repos:
+- repo: https://github.com/ambv/black
+  rev: 18.9b0
+  hooks:
+  - id: black
+    name: Black - the uncompromising Python code formatter
+    language_version: python3
+- repo: https://github.com/pre-commit/pre-commit-hooks
+  rev: v2.0.0
+  hooks:
+  - id: flake8
+    name: Flake8 - your tool for style guide enforcement
+  - id: debug-statements
+  - id: check-merge-conflict
+  - id: end-of-file-fixer
+
+- repo: https://github.com/pre-commit/mirrors-pylint 
+  rev: v2.1.1
+  hooks:
+  - id: pylint
+    name: Pylint - code analysys for Python
+    verbose: true
+- repo: https://github.com/pre-commit/mirrors-mypy
+  rev: v0.641
+  hooks:
+  - id: mypy
+    name: mypy - optional static type checker
+- repo: https://github.com/PyCQA/bandit 
+  rev: master
+  hooks:
+  - id: bandit
+    name: Bandit - a security linter from PyCQA
